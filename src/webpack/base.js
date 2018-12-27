@@ -90,8 +90,8 @@ module.exports = {
       }
     }),
     new webpack.ContextReplacementPlugin(
-      /highlight.js\/lib\/languages$/,
-      new RegExp(`^./(javascript|jsx|bash)$`)
+      /lib[/\\]languages$/,
+      /javascript|html|css|bash/
     )
   ],
   module: {
