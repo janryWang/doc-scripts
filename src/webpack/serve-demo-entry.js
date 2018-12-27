@@ -37,7 +37,7 @@ const renderComponents = components=>components.reduce((buf,fn,key)=>{
 
 const DocRender = ()=>{
   return (
-    <div className="doc-wrapper">
+    <div className="doc-wrapper markdown-body">
        {renderComponents(docs)}
        {renderComponents(readMeDocs)}
     </div>
