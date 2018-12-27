@@ -91,7 +91,7 @@ module.exports = {
     }),
     new webpack.ContextReplacementPlugin(
       /lib[/\\]languages$/,
-      /javascript|html|css|bash/
+      /javascript|htmlbars|scss|css|bash/
     )
   ],
   module: {
