@@ -11,7 +11,7 @@ const cwd = process.cwd()
 const warnImage = path.resolve(__dirname, '../assets/warn.png')
 const errorImage = path.resolve(__dirname, '../assets/error.png')
 const entryPath = path.resolve(__dirname, './serve-demo-entry.js')
-const NpmInstallPlugin = require('npm-install-webpack-plugin')
+//const NpmInstallPlugin = require('npm-install-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const getDemos = dir => {
