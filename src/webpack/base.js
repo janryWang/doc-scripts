@@ -99,7 +99,6 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
         loader: require.resolve('babel-loader'),
         options: babelConfig
       },
@@ -194,7 +193,6 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.md$/,
-        exclude: /node_modules/,
         use: require.resolve('react-demo-loader')
       },
       {
