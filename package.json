@@ -1,6 +1,6 @@
 {
-  "name": "serve-demo",
-  "version": "0.4.0",
+  "name": "doc-scripts",
+  "version": "0.1.0",
   "description": "react demo server",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "precommit": "npm run build && lint-staged && git add -A"
   },
   "bin": {
-    "serve-demo": "./bin/serve-demo"
+    "doc-scripts": "./bin/doc-scripts"
   },
   "lint-staged": {
     "src/*.js": [
@@ -51,7 +51,7 @@
     "progress-bar-webpack-plugin": "^1.11.0",
     "react": "^16.7.0",
     "react-code-snippet": "^0.4.0",
-    "react-demo-loader": "^0.10.0",
+    "react-demo-loader": "^1.0.0",
     "react-dev-utils": "^7.0.0",
     "react-dom": "^16.7.0",
     "style-loader": "^0.23.1",

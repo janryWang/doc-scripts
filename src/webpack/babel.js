@@ -1,10 +1,10 @@
 module.exports = {
   plugins: [
     // https://github.com/babel/babel/issues/8562
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
-    '@babel/plugin-proposal-class-properties',
+    [require.resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
+    require.resolve('@babel/plugin-proposal-class-properties'),
     [
-      'babel-plugin-import',
+      require.resolve('babel-plugin-import'),
       {
         libraryName: 'antd',
         style: true
@@ -12,7 +12,7 @@ module.exports = {
       'antd'
     ],
     [
-      'babel-plugin-import',
+      require.resolve('babel-plugin-import'),
       {
         libraryName: 'antd-mobile',
         style: true
@@ -20,7 +20,7 @@ module.exports = {
       'antd-mobile'
     ],
     [
-      'babel-plugin-import',
+      require.resolve('babel-plugin-import'),
       {
         libraryName: '@alife/next',
         style: true
@@ -28,7 +28,7 @@ module.exports = {
       '@alife/next'
     ],
     [
-      'babel-plugin-import',
+      require.resolve('babel-plugin-import'),
       {
         libraryName: '@alifd/next',
         style: true
@@ -38,7 +38,7 @@ module.exports = {
   ],
   presets: [
     [
-      '@babel/preset-env',
+      require.resolve('@babel/preset-env'),
       {
         targets: {
           chrome: '65'
@@ -48,6 +48,6 @@ module.exports = {
         useBuiltIns: 'usage'
       }
     ].filter(Boolean),
-    '@babel/preset-react'
+    require.resolve('@babel/preset-react')
   ]
 }

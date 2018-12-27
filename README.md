@@ -1,19 +1,19 @@
-# Serve Demo
+# Doc Scripts
 
-> React Demo Server
+> React Document Scripts
 
 ## Install
 
 ```bash
-npm install --save serve-demo
+npm install --save doc-scripts
 ```
 
 ## Usage
 
 ```bash
 
-serve-demo start
+doc-scripts start
 
-serve-demo build
+doc-script build
 
 ```

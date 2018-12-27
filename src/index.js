@@ -10,7 +10,7 @@ program.arguments("<cmd>").action(async cmd => {
         require(script)()
     } catch (e) {
         log.error("Executed a command that does not exist.")
-        log.error(e)
+        log.error(e.stack)
     }
 })
 

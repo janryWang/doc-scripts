@@ -56,7 +56,7 @@ module.exports = {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    'react-is':'ReactIs'
+    'react-is': 'ReactIs'
   },
   plugins: [
     // new NpmInstallPlugin({
@@ -71,7 +71,7 @@ module.exports = {
       onErrors: (severity, errors) => {
         if (severity !== 'error') {
           notifier.notify({
-            title: 'Serve Demo',
+            title: 'React Doc Scripts',
             message: 'warn',
             contentImage: warnImage,
             sound: 'Glass'
@@ -80,7 +80,7 @@ module.exports = {
         } else {
           const error = errors[0]
           notifier.notify({
-            title: 'Serve Demo',
+            title: 'React Doc Scripts',
             message: `${severity} : ${error.name}`,
             subtitle: error.file || '',
             contentImage: errorImage,
@@ -100,27 +100,46 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: require.resolve('babel-loader'),
         options: babelConfig
       },
       {
         test: entryPath,
-        loader: 'val-loader',
+        loader: require.resolve('val-loader'),
         options: {
           demos: getDemos(cwd)
         }
       },
       {
         test: /\.css$/,
-        loader: 'style-loader?singleton!css-loader!postcss-loader'
+        use: [
+          {
+            loader: require.resolve('style-loader'),
+            options: {
+              singleton: true
+            }
+          },
+          require.resolve('css-loader'),
+          require.resolve('postcss-loader')
+        ]
       },
       {
         test: /\.less$/,
-        loader: 'style-loader?singleton!css-loader!postcss-loader!less-loader'
+        use: [
+          {
+            loader: require.resolve('style-loader'),
+            options: {
+              singleton: true
+            }
+          },
+          require.resolve('css-loader'),
+          require.resolve('postcss-loader'),
+          require.resolve('less-loader')
+        ]
       },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           minetype: 'application/font-woff'
@@ -128,7 +147,7 @@ module.exports = {
       },
       {
         test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           minetype: 'application/font-woff'
@@ -136,7 +155,7 @@ module.exports = {
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           minetype: 'application/octet-stream'
@@ -144,7 +163,7 @@ module.exports = {
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           minetype: 'application/vnd.ms-fontobject'
@@ -152,7 +171,7 @@ module.exports = {
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           minetype: 'image/svg+xml'
@@ -160,14 +179,14 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000
         }
       },
       {
         test: /\.html?$/,
-        loader: 'file-loader',
+        loader: require.resolve('file-loader'),
         options: {
           name: '[name].[ext]'
         }
@@ -176,20 +195,20 @@ module.exports = {
         enforce: 'pre',
         test: /\.md$/,
         exclude: /node_modules/,
-        use: 'react-demo-loader'
+        use: require.resolve('react-demo-loader')
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: require.resolve('style-loader'),
             options: {
               singleton: true
             }
           },
-          'css-loader',
-          'postcss-loader',
-          'fast-sass-loader'
+          require.resolve('css-loader'),
+          require.resolve('postcss-loader'),
+          require.resolve('fast-sass-loader')
         ]
       }
     ]
