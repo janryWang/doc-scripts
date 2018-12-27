@@ -1,10 +1,10 @@
 {
   "name": "doc-scripts",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "react demo server",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir lib && cp -rf src/assets lib/assets",
+    "build": "babel src --out-dir lib && cp -rf src/assets lib",
     "precommit": "npm run build && lint-staged && git add -A"
   },
   "bin": {
