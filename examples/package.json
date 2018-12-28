@@ -1,0 +1,11 @@
+{
+  "name":"doc-scripts-example",
+  "version":"1.0.0",
+  "scripts":{
+    "start:doc":"doc-scripts start",
+    "build:doc":"doc-scripts build"
+  },
+  "dependencies": {
+    "doc-scripts":"^1.1.0"
+  }
+}
