@@ -3,6 +3,7 @@
 > React Document Build Tool Scripts
 >
 > - 🛠 No config
+> - 😆 Based on Markdown
 > - 👩‍💻 Code Highlighting And JSX Code is Runnable
 > - 💯Emoji Support
 > - ✨Creates Static files (only JS is prism)
