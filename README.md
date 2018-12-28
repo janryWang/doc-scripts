@@ -1,6 +1,14 @@
 # Doc Scripts
 
 > React Document Scripts
+>
+> - 🛠 No config
+> - 👩‍💻 Code Highlighting And JSX Code is Runnable
+> - 💯Emoji Support
+> - ✨Creates Static files (only JS is prism)
+> - 🏳️‍🌈 Pretty Pages
+> - 🦄 Customizable
+> - 🇳🇱 [CodeSandbox](https://codesandbox.io/) and iframe Support
 
 ## Install
 
