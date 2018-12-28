@@ -1,6 +1,6 @@
 {
   "name": "doc-scripts",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "react demo server",
   "main": "lib",
   "scripts": {
@@ -50,7 +50,7 @@
     "prettier": "^1.11.x",
     "progress-bar-webpack-plugin": "^1.11.0",
     "react": "^16.7.0",
-    "react-code-snippet": "^0.5.5",
+    "react-code-snippet": "^0.6.0",
     "react-demo-loader": "^1.0.0",
     "react-dev-utils": "^7.0.0",
     "react-dom": "^16.7.0",
