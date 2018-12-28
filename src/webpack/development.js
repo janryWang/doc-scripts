@@ -14,6 +14,7 @@ module.exports = ({ port, header, footer } = {}) => {
       inject: 'body',
       port: port,
       hot: true,
+      development:true,
       header,
       footer
     })

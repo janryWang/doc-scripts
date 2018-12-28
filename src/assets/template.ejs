@@ -724,15 +724,15 @@
     <div id="root"></div>
     <script
       crossorigin
-      src="https://unpkg.com/react@16/umd/react.development.js"
+      src="https://unpkg.com/react@16/umd/react.<%= htmlWebpackPlugin.options.development ? "development" : "production.min" %>.js"
     ></script>
     <script
       crossorigin
-      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      src="https://unpkg.com/react-dom@16/umd/react-dom.<%= htmlWebpackPlugin.options.development ? "development" : "production.min" %>.js"
     ></script>
     <script
       crossorigin
-      src="https://unpkg.com/react-is@16/umd/react-is.development.js"
+      src="https://unpkg.com/react-is@16/umd/react-is.<%= htmlWebpackPlugin.options.development ? "development" : "production.min" %>.js"
     ></script>
     <%= htmlWebpackPlugin.options.footer %>
   </body>
