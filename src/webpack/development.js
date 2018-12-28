@@ -5,7 +5,7 @@ const pkg = require(path.resolve(process.cwd(), './package.json'))
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const log = require('../log')
 
-module.exports = port => {
+module.exports = ({ port, header, footer } = {}) => {
   baseConfig.plugins.push(
     new HtmlWebpackPlugin({
       title: `${pkg.name}@${pkg.version}`,
@@ -13,7 +13,9 @@ module.exports = port => {
       template: path.resolve(__dirname, '../assets/template.ejs'),
       inject: 'body',
       port: port,
-      hot: true
+      hot: true,
+      header,
+      footer
     })
   )
 

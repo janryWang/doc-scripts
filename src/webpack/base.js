@@ -8,6 +8,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const notifier = require('node-notifier')
 const babelConfig = require('./babel')
 const cwd = process.cwd()
+const pkg = require(path.resolve(cwd, './package.json'))
 const warnImage = path.resolve(__dirname, '../assets/warn.png')
 const errorImage = path.resolve(__dirname, '../assets/error.png')
 const entryPath = path.resolve(__dirname, './serve-demo-entry.js')
@@ -37,12 +38,20 @@ const getDemos = dir => {
   return list
 }
 
+const getPkgPath = () => {
+  try {
+    const stat = fs.statSync(path.resolve(cwd, './src/index.js'))
+  } catch (e) {
+    return path.resolve(cwd, pkg.main || './index.js')
+  }
+}
+
 module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   entry: [entryPath],
   output: {
-    path: path.resolve(cwd, './docs'),
+    path: path.resolve(cwd, './doc-site'),
     filename: 'bundle.[name].js'
   },
   stats: 'normal',
@@ -50,7 +59,8 @@ module.exports = {
     modules: ['node_modules', path.resolve(__dirname, '../../node_modules')],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      'react-highlight$': 'react-highlight/lib/optimized'
+      'react-highlight$': 'react-highlight/lib/optimized',
+      [pkg.name]: getPkgPath()
     }
   },
   externals: {

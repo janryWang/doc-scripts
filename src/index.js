@@ -3,7 +3,7 @@ import fs from "fs-extra"
 import path from "path"
 import log from "./log"
 
-program.arguments("<cmd>").action(async cmd => {
+export const execute = async cmd => {
     try {
         const script = `./scripts/${cmd}.js`
         await fs.access(path.resolve(__dirname, script))
@@ -12,6 +12,11 @@ program.arguments("<cmd>").action(async cmd => {
         log.error("Executed a command that does not exist.")
         log.error(e.stack)
     }
-})
+}
 
-program.parse(process.argv)
+export const command = () => {
+    program.arguments("<cmd>").action(async cmd => {
+        await execute()
+    })
+    program.parse(process.argv)
+}
