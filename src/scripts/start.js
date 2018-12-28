@@ -15,7 +15,6 @@ module.exports = async () => {
   new WebpackDevServer(complier, {
     publicPath: '/',
     quiet: true,
-    https: true,
     hot: true
   }).listen(DEFAULT_PORT, HOST, err => {
     if (err) {

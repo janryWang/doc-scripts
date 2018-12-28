@@ -14,37 +14,40 @@ module.exports = function(options) {
   )
   return {
     code: `
-import React from 'react'
-import ReactDOM from 'react-dom'
-const readMeDocs = [${readmes
+var React = require('react')
+var ReactDOM = require('react-dom')
+var readMeDocs = [${readmes
       .map(path => {
         return `require("${path}")`
       })
       .join(',')}]
-const docs = [${docs
+var docs = [${docs
       .map(path => {
         return `require("${path}")`
       })
       .join(',')}]
 
-const renderComponents = components=>components.reduce((buf,fn,key)=>{
-  if(typeof fn === 'function'){
-    return buf.concat(React.createElement(fn,{key}))
-  } else {
-    return buf
-  }
-},[])
-
-const DocRender = ()=>{
-  return (
-    <div className="doc-wrapper markdown-body">
-       {renderComponents(docs)}
-       {renderComponents(readMeDocs)}
-    </div>
-  )
+var renderComponents = function(components){
+  return components.reduce(function(buf,fn,key){
+    if(typeof fn === 'function'){
+      return buf.concat(React.createElement(fn,{key}))
+    } else {
+      return buf
+    }
+  },[])
 }
 
-ReactDOM.render(<DocRender/>,document.getElementById('root'))
+var DocRender = function(){
+  return React.createElement('div',{
+        className:"doc-wrapper markdown-body"
+      },
+      renderComponents(docs),
+      renderComponents(readMeDocs)
+    )
+  
+}
+
+ReactDOM.render(React.createElement(DocRender),document.getElementById('root'))
 
 `
   }

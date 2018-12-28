@@ -1,8 +1,8 @@
 {
   "name": "doc-scripts",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "react demo server",
-  "main": "index.js",
+  "main": "lib",
   "scripts": {
     "build": "babel src --out-dir lib && cp -rf src/assets lib",
     "precommit": "npm run build && lint-staged && git add -A"
@@ -50,7 +50,7 @@
     "prettier": "^1.11.x",
     "progress-bar-webpack-plugin": "^1.11.0",
     "react": "^16.7.0",
-    "react-code-snippet": "^0.4.0",
+    "react-code-snippet": "^0.5.5",
     "react-demo-loader": "^1.0.0",
     "react-dev-utils": "^7.0.0",
     "react-dom": "^16.7.0",

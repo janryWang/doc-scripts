@@ -13,7 +13,6 @@ const warnImage = path.resolve(__dirname, '../assets/warn.png')
 const errorImage = path.resolve(__dirname, '../assets/error.png')
 const entryPath = path.resolve(__dirname, './serve-demo-entry.js')
 //const NpmInstallPlugin = require('npm-install-webpack-plugin')
-const rucksack = require("rucksack-css")
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const getDemos = dir => {
@@ -63,6 +62,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       'react-highlight$': 'react-highlight/lib/optimized',
+      'styled-components':require.resolve('styled-components'),
       [pkg.name]: getPkgPath()
     }
   },
@@ -76,15 +76,6 @@ module.exports = {
     //   peerDependencies: true,
     //   npm:'tnpm'
     // }),
-    new webpack.LoaderOptionsPlugin({
-      postcss: function() {
-        return [
-          rucksack({
-            autoprefixer: true
-          })
-        ]
-      }
-    }),
     new ProgressBarPlugin({
       clear: false
     }),
@@ -121,6 +112,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: require.resolve('babel-loader'),
+        exclude: /node_modules/,
         options: babelConfig
       },
       {
@@ -139,8 +131,7 @@ module.exports = {
               singleton: true
             }
           },
-          require.resolve('css-loader'),
-          require.resolve('postcss-loader')
+          require.resolve('css-loader')
         ]
       },
       {
@@ -153,7 +144,6 @@ module.exports = {
             }
           },
           require.resolve('css-loader'),
-          require.resolve('postcss-loader'),
           require.resolve('less-loader')
         ]
       },
@@ -226,7 +216,6 @@ module.exports = {
             }
           },
           require.resolve('css-loader'),
-          require.resolve('postcss-loader'),
           require.resolve('fast-sass-loader')
         ]
       }
