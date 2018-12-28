@@ -13,6 +13,7 @@ const warnImage = path.resolve(__dirname, '../assets/warn.png')
 const errorImage = path.resolve(__dirname, '../assets/error.png')
 const entryPath = path.resolve(__dirname, './serve-demo-entry.js')
 //const NpmInstallPlugin = require('npm-install-webpack-plugin')
+const rucksack = require("rucksack-css")
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const getDemos = dir => {
@@ -40,7 +41,9 @@ const getDemos = dir => {
 
 const getPkgPath = () => {
   try {
-    const stat = fs.statSync(path.resolve(cwd, './src/index.js'))
+    const defaultPath = path.resolve(cwd, './src/index.js')
+    const stat = fs.statSync(defaultPath)
+    return defaultPath
   } catch (e) {
     return path.resolve(cwd, pkg.main || './index.js')
   }
@@ -73,6 +76,15 @@ module.exports = {
     //   peerDependencies: true,
     //   npm:'tnpm'
     // }),
+    new webpack.LoaderOptionsPlugin({
+      postcss: function() {
+        return [
+          rucksack({
+            autoprefixer: true
+          })
+        ]
+      }
+    }),
     new ProgressBarPlugin({
       clear: false
     }),
