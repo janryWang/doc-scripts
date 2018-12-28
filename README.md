@@ -10,6 +10,8 @@
 > - 🦄 Customizable
 > - 🇳🇱 [CodeSandbox](https://codesandbox.io/) and iframe Support
 
+[![NPM](https://img.shields.io/npm/v/doc-scripts.svg)](https://www.npmjs.com/package/doc-scripts)(https://travis-ci.com/transitive-bullshit/doc-scripts) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 ## Install
 
 ```bash
