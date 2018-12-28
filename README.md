@@ -1,6 +1,6 @@
 # Doc Scripts
 
-> React Document Scripts
+> React Document Build Tool Scripts
 >
 > - 🛠 No config
 > - 👩‍💻 Code Highlighting And JSX Code is Runnable
