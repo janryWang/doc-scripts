@@ -16,7 +16,7 @@ export const execute = async cmd => {
 
 export const command = () => {
     program.arguments("<cmd>").action(async cmd => {
-        await execute()
+        await execute(cmd)
     })
     program.parse(process.argv)
 }
