@@ -91,8 +91,12 @@ The following is the specific format specification.
 
 ## Contributors 💪🏻 
 
-<!-- ALL-CONTRIBUTORS-LIST: START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:START  -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/4060976?v=4" width="100px;"/><br /><sub><b>Janry</b></sub>](https://github.com/janryWang)<br />[📖](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Documentation") [💻](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Code") [👀](#review-janryWang "Reviewed Pull Requests") [🤔](#ideas-janryWang "Ideas, Planning, & Feedback") |
+| :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
 
 ### LICENSE
 
