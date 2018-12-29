@@ -3,7 +3,7 @@
 <a href="https://www.npmjs.com/package/doc-scripts"><img src="https://img.shields.io/npm/v/doc-scripts.svg"></a>
 <a href="https://travis-ci.com/janryWang/doc-scripts"><img src="https://travis-ci.com/janryWang/doc-scripts.svg?branch=master"></a>
 <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"></a>
-<img style="margin-top:40px" src="https://img.alicdn.com/tfs/TB1astTy3HqK1RjSZFPXXcwapXa-3864-2538.png">
+<img  src="https://img.alicdn.com/tfs/TB1N2p6y4jaK1RjSZFAXXbdLFXa-4044-3097.png">
 </p>
 
 
