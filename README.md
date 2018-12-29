@@ -30,7 +30,7 @@ npm install --save doc-scripts
 
 ## Usage 🌈
 
-**node cli**
+**1. Node cli**
 
 ```bash
 
@@ -40,7 +40,7 @@ doc-script build
 
 ```
 
-**javascript api**
+**2. Javascript api**
 
 ```javascript
 
@@ -50,7 +50,7 @@ execute('start') or execute('build')
 
 ```
 
-**Webpack extended configuration**
+**3. Webpack extended configuration**
 
 Create a new file named doc-scripts.config.js in the root directory.
 The following is the specific format specification.
@@ -78,7 +78,7 @@ module.exports = function(config){
 
 ```
 
-**Demo HTML Template extended configuration**
+**4. Demo HTML Template extended configuration**
 
 Create a new file named doc-scripts.header.html or doc-scripts.footer.html in the root directory.
 The following is the specific format specification.
@@ -87,6 +87,7 @@ The following is the specific format specification.
 <!-- this is doc-scripts.header.html -->
 <link rel="stylesheet" href="//unpkg.com/@alifd/next/dist/next.min.css"/>
 ```
+
 
 
 ## Contributors 💪🏻 
