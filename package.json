@@ -5,7 +5,9 @@
   "main": "lib",
   "scripts": {
     "build": "babel src --out-dir lib && cp -rf src/assets lib",
-    "precommit": "npm run build && lint-staged && git add -A"
+    "precommit": "npm run build && lint-staged && npm run contri:gen && git add -A",
+    "contri:add": "all-contributors add",
+    "contri:gen": "all-contributors generate"
   },
   "bin": {
     "doc-scripts": "./bin/doc-scripts"
@@ -65,5 +67,8 @@
     "webpack-merge": "^4.1.5"
   },
   "license": "MIT",
-  "author": "janryWang"
+  "author": "janryWang",
+  "devDependencies": {
+    "all-contributors-cli": "^5.4.1"
+  }
 }

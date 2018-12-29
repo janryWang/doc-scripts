@@ -1,25 +1,34 @@
-# Doc Scripts
+<p align="center">
+<img src="//img.alicdn.com/tfs/TB1fk0Qy3HqK1RjSZFEXXcGMXXa-1616-626.png">
+<a href="https://www.npmjs.com/package/doc-scripts"><img src="https://img.shields.io/npm/v/doc-scripts.svg"></a>
+<a href="https://travis-ci.com/janryWang/doc-scripts"><img src="https://travis-ci.com/janryWang/doc-scripts.svg?branch=master"></a>
+<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"></a>
+</p>
 
-> React Document Build Tool Scripts
->
-> - 🛠 No config
-> - 😆 Based on Markdown,Merge and Show all markdown files
-> - 👩‍💻 Code Highlighting And JSX Code is Runnable
-> - 💯Emoji Support
-> - ✨Creates Static files (only JS is prism)
-> - 🏳️‍🌈 Pretty Pages
-> - 🦄 Customizable
-> - 🇳🇱 [CodeSandbox](https://codesandbox.io/) and iframe Support
 
-[![NPM](https://img.shields.io/npm/v/doc-scripts.svg)](https://www.npmjs.com/package/doc-scripts) [![Build Status](https://travis-ci.com/janryWang/doc-scripts.svg?branch=master)](https://travis-ci.com/janryWang/doc-scripts) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+## Features 🦑
+
+- 🛠 No config
+- 😆 Based on Markdown,Merge and Show all markdown files
+- 👩‍💻 Code Highlighting And JSX Code is Runnable
+- 💯Emoji Support
+- ✨Creates Static files (only JS is prism)
+- 🏳️‍🌈 Pretty Pages
+- 🦄 Customizable
+- 🇳🇱 [CodeSandbox](https://codesandbox.io/) and iframe Support
+
+
+
+## Install 🦅
 
 ```bash
 npm install --save doc-scripts
 ```
 
-## Usage
+
+
+## Usage 🌈
 
 **node cli**
 
@@ -80,25 +89,11 @@ The following is the specific format specification.
 ```
 
 
+## Contributors 💪🏻 
+
+<!-- ALL-CONTRIBUTORS-LIST: START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ### LICENSE
 
-The MIT License (MIT)
-
-Copyright (c) 2018 JanryWang
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Doc scripts is open source software licensed as [MIT.](./LICENSE)
