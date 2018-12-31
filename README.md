@@ -42,7 +42,11 @@ doc-script build
 
 ```
 
-**2. Javascript api**
+**2. Markdown Usage**
+
+[examples](./examples/readme.md)
+
+**3. Javascript api**
 
 ```javascript
 
@@ -52,7 +56,7 @@ execute('start') or execute('build')
 
 ```
 
-**3. Webpack extended configuration**
+**4. Webpack extended configuration**
 
 Create a new file named doc-scripts.config.js in the root directory.
 The following is the specific format specification.
@@ -80,7 +84,7 @@ module.exports = function(config){
 
 ```
 
-**4. Demo HTML Template extended configuration**
+**5. Demo HTML Template extended configuration**
 
 Create a new file named doc-scripts.header.html or doc-scripts.footer.html in the root directory.
 The following is the specific format specification.
@@ -89,7 +93,6 @@ The following is the specific format specification.
 <!-- this is doc-scripts.header.html -->
 <link rel="stylesheet" href="//unpkg.com/@alifd/next/dist/next.min.css"/>
 ```
-
 
 
 ## Contributors 💪🏻 
