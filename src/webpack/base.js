@@ -62,7 +62,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       'react-highlight$': 'react-highlight/lib/optimized',
-      'styled-components':require.resolve('styled-components'),
+      'styled-components': require.resolve('styled-components'),
       [pkg.name]: getPkgPath()
     }
   },
@@ -114,6 +114,21 @@ module.exports = {
         loader: require.resolve('babel-loader'),
         exclude: /node_modules/,
         options: babelConfig
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          require.resolve('ts-loader'),
+          {
+            loader: require.resolve('react-docgen-typescript-loader'),
+            options: {
+              propFilter: (prop) => {
+                if (prop.parent == null) return true
+                return !prop.parent.fileName.includes('node_modules')
+              }
+            }
+          }
+        ]
       },
       {
         test: entryPath,

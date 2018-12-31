@@ -3,6 +3,7 @@ module.exports = {
     // https://github.com/babel/babel/issues/8562
     [require.resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
     require.resolve('@babel/plugin-proposal-class-properties'),
+    require.resolve('babel-plugin-react-docgen'),
     [
       require.resolve('babel-plugin-import'),
       {

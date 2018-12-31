@@ -27,7 +27,7 @@ export default ()=>{
 ```
 #### React Component Props Table
 
-<!-- BLOCK_START : COMPONENT_PROPS : ./Button.js -->
+<!-- BLOCK_START : COMPONENT_PROPS : ./src/Button.js -->
 <!-- BLOCK_END -->
 
 #### Javascript Code Highlights
