@@ -11,11 +11,11 @@ const cwd = process.cwd()
 const pkg = require(path.resolve(cwd, './package.json'))
 const warnImage = path.resolve(__dirname, '../assets/warn.png')
 const errorImage = path.resolve(__dirname, '../assets/error.png')
-const entryPath = path.resolve(__dirname, './serve-demo-entry.js')
+const entryPath = path.resolve(__dirname, './doc-scripts-entry.js')
 //const NpmInstallPlugin = require('npm-install-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
-const getDemos = dir => {
+const getDocs = dir => {
   let list = []
   try {
     list = fs.readdirSync(dir)
@@ -25,7 +25,7 @@ const getDemos = dir => {
       if (_path.indexOf('node_modules') > -1) {
         return buf
       } else if (stat.isDirectory()) {
-        return buf.concat(getDemos(_path))
+        return buf.concat(getDocs(_path))
       } else if (/\.md$/.test(_path)) {
         return buf.concat(_path)
       } else {
@@ -119,7 +119,7 @@ module.exports = {
         test: entryPath,
         loader: require.resolve('val-loader'),
         options: {
-          demos: getDemos(cwd)
+          docs: getDocs(cwd)
         }
       },
       {
