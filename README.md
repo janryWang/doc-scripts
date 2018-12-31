@@ -44,7 +44,7 @@ doc-script build
 
 **2. Markdown Usage**
 
-[examples](./examples/readme.md)
+[examples](./examples/README.md)
 
 **3. Javascript api**
 
