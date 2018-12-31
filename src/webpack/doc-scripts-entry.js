@@ -5,16 +5,18 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactDocRenderer = require('react-doc-renderer')
 var docs = [
-  ${
-    options.docs.map((path)=>{
-      return `{
+  ${options.docs
+    .map(path => {
+      return `(function(){
+        var component = require("${path}");
+        return {
           path:"${path}",
-          component:require("${path}"),
+          component:component,
           meta:component.meta
         }
-      }`
-    }).join(',')
-  }
+      })()`
+    })
+    .join(',')}
 ];
 
 ReactDOM.render(
