@@ -4,10 +4,10 @@ const path = require('path')
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = ({ header, footer } = {}) => {
+module.exports = ({ header, footer, title } = {}) => {
   baseConfig.plugins.push(
     new HtmlWebpackPlugin({
-      title: `${pkg.name}@${pkg.version}`,
+      title: title ? title : `${pkg.name}@${pkg.version}`,
       filename: 'index.html',
       template: path.resolve(__dirname, '../assets/template.ejs'),
       inject: 'body',

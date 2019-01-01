@@ -5,13 +5,17 @@ const openBrowser = require('react-dev-utils/openBrowser')
 const getPort = require('get-port')
 const log = require('../log')
 
-module.exports = async () => {
+module.exports = async (options, webpackConfig) => {
   const HOST = process.env.HOST || 'localhost'
 
   const DEFAULT_PORT = await getPort({ host: HOST, port: 3000 })
 
   const complier = webpack(
-    await getConfig('development', { port: DEFAULT_PORT })
+    await getConfig(
+      'development',
+      { ...options, port: DEFAULT_PORT },
+      webpackConfig
+    )
   )
   new WebpackDevServer(complier, {
     publicPath: '/',

@@ -6,8 +6,6 @@
 <img  src="https://img.alicdn.com/tfs/TB1N2p6y4jaK1RjSZFAXXbdLFXa-4044-3097.png">
 </p>
 
-
-
 ## Features 🦑
 
 - 🛠 No config
@@ -20,15 +18,11 @@
 - 🦄 Customizable
 - 🇳🇱 [CodeSandbox](https://codesandbox.io/) and iframe Support
 
-
-
 ## Install 🦅
 
 ```bash
 npm install --save doc-scripts
 ```
-
-
 
 ## Usage 🌈
 
@@ -52,57 +46,65 @@ doc-script build
 
 import {execute} from 'doc-scripts'
 
-execute('start') or execute('build')
+const options = {
+  title:'xxxx',
+  header:'<link rel="stylesheet" href="//xxxxxx">',
+  footer:'<script>xxxxx</script>'
+}
+
+const webpackConfig = {
+  module:{
+    rules:[...]
+  }
+}
+
+execute('start',options,webpackConfig) or execute('build',options,webpackConfig)
 
 ```
 
 **4. Webpack extended configuration**
 
-Create a new file named doc-scripts.config.js in the root directory.
-The following is the specific format specification.
+Create a new file named doc-scripts.config.js in the root directory. The
+following is the specific format specification.
 
 ```javascript
-
 module.exports = {
-  module:{
-    rules:[]
+  module: {
+    rules: []
   },
-  plugins:[]
+  plugins: []
 }
 
 //or
 
-module.exports = function(config){
+module.exports = function(config) {
   return {
     ...config,
-    module:{
-      rules:[]
+    module: {
+      rules: []
     },
-    plugins:[]
+    plugins: []
   }
 }
-
 ```
 
 **5. Demo HTML Template extended configuration**
 
-Create a new file named doc-scripts.header.html or doc-scripts.footer.html in the root directory.
-The following is the specific format specification.
+Create a new file named doc-scripts.header.html or doc-scripts.footer.html in
+the root directory. The following is the specific format specification.
 
 ```html
 <!-- this is doc-scripts.header.html -->
-<link rel="stylesheet" href="//unpkg.com/@alifd/next/dist/next.min.css"/>
+<link rel="stylesheet" href="//unpkg.com/@alifd/next/dist/next.min.css" />
 ```
 
-
-## Contributors 💪🏻 
+## Contributors 💪🏻
 
 <!-- ALL-CONTRIBUTORS-LIST:START  -->
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/4060976?v=4" width="100px;"/><br /><sub><b>Janry</b></sub>](https://github.com/janryWang)<br />[📖](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Documentation") [💻](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Code") [👀](#review-janryWang "Reviewed Pull Requests") [🤔](#ideas-janryWang "Ideas, Planning, & Feedback") |
 | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
 
 ### LICENSE
 
