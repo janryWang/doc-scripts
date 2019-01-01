@@ -14,9 +14,9 @@ export const execute = async (cmd, options, webpackConfig) => {
     }
 }
 
-export const command = () => {
+export const command = (options, webpackConfig) => {
     program.arguments("<cmd>").action(async cmd => {
-        await execute(cmd)
+        await execute(cmd, options, webpackConfig)
     })
     program.parse(process.argv)
 }
