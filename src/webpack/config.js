@@ -10,8 +10,11 @@ module.exports = async function(mode, options = {}) {
   const headerPath = path.resolve(cwd, './doc-scripts.header.html')
   const footerPath = path.resolve(cwd, './doc-scripts.footer.html')
   try {
-    await fs.access(userConfigPath)
-    const userConfigContents = require(userConfigPath)
+    let userConfigContents
+    try {
+      await fs.access(userConfigPath)
+      userConfigContents = require(userConfigPath)
+    } catch (e) {}
     try {
       await fs.access(headerPath)
       options.header = await fs.readFile(headerPath, 'utf-8')
