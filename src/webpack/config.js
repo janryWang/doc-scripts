@@ -25,7 +25,7 @@ module.exports = async function(mode, options = {}) {
     } catch (e) {}
     if (typeof userConfigContents === 'function') {
       return userConfigContents(config(options))
-    } else {
+    } else if(userConfigContents) {
       return merge.smart(config(options), userConfigContents)
     }
     return config(options)
