@@ -1,6 +1,6 @@
 {
   "name": "doc-scripts",
-  "version": "1.3.2",
+  "version": "1.3.4",
   "description": "react demo server",
   "main": "lib",
   "scripts": {
@@ -73,6 +73,7 @@
   "license": "MIT",
   "author": "janryWang",
   "devDependencies": {
-    "all-contributors-cli": "^5.4.1"
+    "all-contributors-cli": "^5.4.1",
+    "babel-plugin-transform-async-to-promises": "^0.8.4"
   }
 }

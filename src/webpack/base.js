@@ -82,15 +82,7 @@ module.exports = {
     new CaseSensitivePathsPlugin(),
     new FriendlyErrorsWebpackPlugin({
       onErrors: (severity, errors) => {
-        if (severity !== 'error') {
-          notifier.notify({
-            title: 'React Doc Scripts',
-            message: 'warn',
-            contentImage: warnImage,
-            sound: 'Glass'
-          })
-          return
-        } else {
+        if (severity === 'error') {
           const error = errors[0]
           notifier.notify({
             title: 'React Doc Scripts',

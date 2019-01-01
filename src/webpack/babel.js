@@ -23,14 +23,6 @@ module.exports = {
     [
       require.resolve('babel-plugin-import'),
       {
-        libraryName: '@alife/next',
-        style: true
-      },
-      '@alife/next'
-    ],
-    [
-      require.resolve('babel-plugin-import'),
-      {
         libraryName: '@alifd/next',
         style: true
       },
