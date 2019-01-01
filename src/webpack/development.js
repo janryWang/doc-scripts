@@ -21,10 +21,9 @@ module.exports = ({ port, header, footer, title } = {}) => {
   )
 
   baseConfig.entry.push(
-    'webpack/hot/dev-server',
-    `webpack-dev-server/client?http://localhost:${port}`
+    require.resolve('webpack/hot/dev-server'),
+    `${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`
   )
-
   baseConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
 
   return baseConfig
