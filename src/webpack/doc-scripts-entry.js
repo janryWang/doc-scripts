@@ -18,6 +18,9 @@ module.exports = function(options) {
   var ReactDocRenderer = require('${
     hasRenderer ? rendererPath : 'react-doc-renderer'
   }')
+
+  ReactDocRenderer = ReactDocRenderer.__esModule ? ReactDocRenderer.default : ReactDocRenderer
+
   var docs = [
     ${options.docs
       .map(path => {
