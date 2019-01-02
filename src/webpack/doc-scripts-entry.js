@@ -8,7 +8,7 @@ module.exports = function(options) {
     : path.resolve(cwd, './doc-scripts.renderer.js')
   let hasRenderer = false
   try {
-    fs.access(rendererPath)
+    fs.accessSync(rendererPath)
     hasRenderer = true
   } catch (e) {}
 
