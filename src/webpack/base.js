@@ -48,7 +48,7 @@ const getPkgPath = () => {
   }
 }
 
-module.exports = {
+module.exports = options => ({
   mode: 'development',
   devtool: 'cheap-module-source-map',
   entry: [entryPath],
@@ -114,7 +114,7 @@ module.exports = {
           {
             loader: require.resolve('react-docgen-typescript-loader'),
             options: {
-              propFilter: (prop) => {
+              propFilter: prop => {
                 if (prop.parent == null) return true
                 return !prop.parent.fileName.includes('node_modules')
               }
@@ -126,6 +126,7 @@ module.exports = {
         test: entryPath,
         loader: require.resolve('val-loader'),
         options: {
+          ...options,
           docs: getDocs(cwd)
         }
       },
@@ -228,4 +229,4 @@ module.exports = {
       }
     ]
   }
-}
+})

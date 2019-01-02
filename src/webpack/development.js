@@ -5,8 +5,10 @@ const pkg = require(path.resolve(process.cwd(), './package.json'))
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const log = require('../log')
 
-module.exports = ({ port, header, footer, title } = {}) => {
-  baseConfig.plugins.push(
+module.exports = options => {
+  const { port, header, footer, title } = options || {}
+  const config = baseConfig(options)
+  config.plugins.push(
     new HtmlWebpackPlugin({
       title: title ? title : `${pkg.name}@${pkg.version}`,
       filename: 'index.html',
@@ -20,11 +22,11 @@ module.exports = ({ port, header, footer, title } = {}) => {
     })
   )
 
-  baseConfig.entry.push(
+  config.entry.push(
     require.resolve('webpack/hot/dev-server'),
     `${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`
   )
-  baseConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
 
-  return baseConfig
+  return config
 }

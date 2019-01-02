@@ -4,8 +4,10 @@ const path = require('path')
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = ({ header, footer, title } = {}) => {
-  baseConfig.plugins.push(
+module.exports = (options) => {
+  const { header, footer, title } = options || {}
+  const config = baseConfig(options)
+  config.plugins.push(
     new HtmlWebpackPlugin({
       title: title ? title : `${pkg.name}@${pkg.version}`,
       filename: 'index.html',
@@ -17,7 +19,7 @@ module.exports = ({ header, footer, title } = {}) => {
     })
   )
   return {
-    ...baseConfig,
+    ...config,
     mode: 'production'
   }
 }

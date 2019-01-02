@@ -49,7 +49,8 @@ import {execute} from 'doc-scripts'
 const options = {
   title:'xxxx',
   header:'<link rel="stylesheet" href="//xxxxxx">',
-  footer:'<script>xxxxx</script>'
+  footer:'<script>xxxxx</script>',
+  renderer:'./doc-renderer.js'
 }
 
 const webpackConfig = {
@@ -97,6 +98,26 @@ the root directory. The following is the specific format specification.
 <!-- this is doc-scripts.header.html -->
 <link rel="stylesheet" href="//unpkg.com/@alifd/next/dist/next.min.css" />
 ```
+
+**6. Customize Doc Renderer**
+
+Create a new file named doc-scripts.renderer.js  in
+the root directory. The following is the specific format specification.
+
+```jsx
+
+import DocRenderer from 'react-doc-renderer'
+
+//react-doc-renderer default render engien in doc-scripts, so ,you can continue to reuse this component in doc-scripts.renderer.js, or you can completely override its behavior.
+
+export default ({docs})=>(
+  <div>
+    <DocRenderer docs={docs}/>
+  </div>
+)
+
+```
+
 
 ## Contributors 💪🏻
 
