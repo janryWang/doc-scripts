@@ -20,6 +20,7 @@ module.exports = (options, webpackConfig) => {
           const info = stats.toJson()
           reject(info.errors)
         } else {
+          log.success("The document has been built successfully 🎉🎉")
           resolve()
         }
       }

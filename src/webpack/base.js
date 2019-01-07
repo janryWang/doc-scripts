@@ -2,18 +2,13 @@ const fs = require('fs-extra')
 const path = require('path')
 const log = require('../log')
 const webpack = require('webpack')
-const VirtualModulePlugin = require('virtual-module-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const notifier = require('node-notifier')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const babelConfig = require('./babel')
 const cwd = process.cwd()
 const pkg = require(path.resolve(cwd, './package.json'))
-const warnImage = path.resolve(__dirname, '../assets/warn.png')
-const errorImage = path.resolve(__dirname, '../assets/error.png')
+
 const entryPath = path.resolve(__dirname, './doc-scripts-entry.js')
-//const NpmInstallPlugin = require('npm-install-webpack-plugin')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const getDocs = dir => {
   let list = []
@@ -56,7 +51,7 @@ module.exports = options => ({
     path: path.resolve(cwd, './doc-site'),
     filename: 'bundle.[name].js'
   },
-  stats: 'normal',
+  stats: 'errors-only',
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, '../../node_modules')],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
@@ -72,28 +67,10 @@ module.exports = options => ({
     'react-is': 'ReactIs'
   },
   plugins: [
-    // new NpmInstallPlugin({
-    //   peerDependencies: true,
-    //   npm:'tnpm'
-    // }),
     new ProgressBarPlugin({
       clear: false
     }),
     new CaseSensitivePathsPlugin(),
-    new FriendlyErrorsWebpackPlugin({
-      onErrors: (severity, errors) => {
-        if (severity === 'error') {
-          const error = errors[0]
-          notifier.notify({
-            title: 'React Doc Scripts',
-            message: `${severity} : ${error.name}`,
-            subtitle: error.file || '',
-            contentImage: errorImage,
-            sound: 'Glass'
-          })
-        }
-      }
-    }),
     new webpack.ContextReplacementPlugin(
       /lib[/\\]languages$/,
       /javascript|htmlbars|scss|css|bash/
