@@ -14,8 +14,7 @@ module.exports = (options, webpackConfig) => {
           }
           return
         }
-
-        process.stdout.write(stats.toString() + '\n')
+        
         if (stats.hasErrors()) {
           const info = stats.toJson()
           reject(info.errors)
