@@ -21,6 +21,10 @@ module.exports = function(options) {
 
   ReactDocRenderer = ReactDocRenderer.__esModule ? ReactDocRenderer.default : ReactDocRenderer
 
+  options.docs = options.docs.map((tPath)=>{
+    return tPath.replace(/\\/g,"/");
+  });
+
   var docs = [
     ${options.docs
       .map(path => {
