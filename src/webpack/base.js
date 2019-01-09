@@ -68,7 +68,7 @@ module.exports = options => ({
   },
   plugins: [
     new ProgressBarPlugin({
-      clear: false
+      clear: true
     }),
     new CaseSensitivePathsPlugin(),
     new webpack.ContextReplacementPlugin(
