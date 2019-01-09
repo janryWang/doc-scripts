@@ -7,10 +7,13 @@ export const execute = async (cmd, options, webpackConfig) => {
     try {
         const script = `./scripts/${cmd}.js`
         await fs.access(path.resolve(__dirname, script))
-        await require(script)(options, webpackConfig)
+        try {
+            await require(script)(options, webpackConfig)
+        } catch (e) {
+            log.error(e ? (e.stack ? e.stack : e.message) : e)
+        }
     } catch (e) {
         log.error("Executed a command that does not exist.")
-        log.error(e.stack)
     }
 }
 
