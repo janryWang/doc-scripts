@@ -10,7 +10,13 @@ export const execute = async (cmd, options, webpackConfig) => {
         try {
             await require(script)(options, webpackConfig)
         } catch (e) {
-            log.error(e ? (e.stack ? e.stack : e.message) : e)
+            console.log(
+                e && (e.stack || e.message)
+                    ? e.stack
+                        ? e.stack
+                        : e.message
+                    : e
+            )
         }
     } catch (e) {
         log.error("Executed a command that does not exist.")

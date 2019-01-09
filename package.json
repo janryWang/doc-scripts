@@ -1,6 +1,6 @@
 {
   "name": "doc-scripts",
-  "version": "1.6.9",
+  "version": "1.6.10",
   "description": "react demo server",
   "main": "lib",
   "scripts": {
