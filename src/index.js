@@ -9,7 +9,7 @@ export const execute = async (cmd, options, webpackConfig) => {
     try {
         await fs.access(path.resolve(__dirname, script))
     } catch (e) {
-        throw chalk.red("Executed a command that does not exist.")
+        throw chalk.red(`"doc-scripts ${cmd}" is invalid command.`)
     }
     try {
         await require(script)(options, webpackConfig)
