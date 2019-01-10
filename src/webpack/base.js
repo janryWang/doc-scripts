@@ -73,7 +73,7 @@ module.exports = options => ({
     new CaseSensitivePathsPlugin(),
     new webpack.ContextReplacementPlugin(
       /lib[/\\]languages$/,
-      /javascript|htmlbars|scss|css|bash/
+      /javascript|htmlbars|typescript|scss|css|bash/
     )
   ],
   module: {
