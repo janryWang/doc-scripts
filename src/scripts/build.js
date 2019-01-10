@@ -15,7 +15,7 @@ module.exports = async (options, webpackConfig) => {
         return
       }
 
-      if (stats.hasErrors() || stats.hasWarings()) {
+      if (stats.hasErrors() || stats.hasWarnings()) {
         reject(stats.toString({ colors: true }))
       } else {
         log.success('The document has been built successfully 🎉🎉')
