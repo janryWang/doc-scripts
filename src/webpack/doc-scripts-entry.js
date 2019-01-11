@@ -2,6 +2,8 @@ const path = require('path')
 const fs = require('fs-extra')
 const cwd = process.cwd()
 
+const toArr = val => (Array.isArray(val) ? val : val ? [val] : [])
+
 module.exports = function(options) {
   const rendererPath = options.renderer
     ? options.renderer
@@ -18,7 +20,9 @@ module.exports = function(options) {
   var ReactDocRenderer = require('${
     hasRenderer ? rendererPath : 'react-doc-renderer'
   }')
-
+  ${toArr(options.requires).map(path => {
+    return `require("${path}")`
+  })}
   ReactDocRenderer = ReactDocRenderer.__esModule ? ReactDocRenderer.default : ReactDocRenderer
 
   var docs = [

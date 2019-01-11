@@ -50,7 +50,8 @@ const options = {
   title:'xxxx',
   header:'<link rel="stylesheet" href="//xxxxxx">',
   footer:'<script>xxxxx</script>',
-  renderer:'./doc-renderer.js'
+  renderer:'./doc-renderer.js',
+  requires:[]
 }
 
 const webpackConfig = {
