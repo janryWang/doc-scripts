@@ -15,7 +15,7 @@ module.exports = {
         targets: {
           chrome: '65'
         },
-        modules: 'commonjs',
+        modules: false,
         loose: true,
         useBuiltIns: 'usage'
       }
