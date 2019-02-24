@@ -30,9 +30,9 @@ npm install --save doc-scripts
 
 ```bash
 
-doc-scripts start
+doc-scripts start --input docs
 
-doc-script build
+doc-script build --input docs --output doc-site
 
 ```
 
