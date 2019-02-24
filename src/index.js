@@ -18,13 +18,21 @@ export const execute = async (cmd, options, webpackConfig) => {
     }
 }
 
-export const command = (options, webpackConfig) => {
-    program.arguments("<cmd>").action(async cmd => {
-        try {
-            await execute(cmd, options, webpackConfig)
-        } catch (e) {
-            console.log(e)
-        }
-    })
+export const command = (options = {}, webpackConfig) => {
+    program
+        .option("-i, --input <dir>", "Entry Directory")
+        .option("-o, --output <dir>", "Output Directory")
+        .arguments("<script>")
+        .action(async (script, cmd) => {
+            try {
+                if (cmd.input)
+                    options.input = path.resolve(process.cwd(), cmd.input)
+                if (cmd.output)
+                    options.output = path.resolve(process.cwd(), cmd.output)
+                await execute(script, options, webpackConfig)
+            } catch (e) {
+                console.log(e)
+            }
+        })
     program.parse(process.argv)
 }

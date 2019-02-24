@@ -111,7 +111,7 @@ import DocRenderer from 'react-doc-renderer'
 
 //react-doc-renderer default render engien in doc-scripts, so ,you can continue to reuse this component in doc-scripts.renderer.js, or you can completely override its behavior.
 
-export default ({docs})=>(
+export default ({docs = []})=>(
   <div>
     <DocRenderer docs={docs}/>
   </div>
@@ -124,7 +124,7 @@ export default ({docs})=>(
 
 <!-- ALL-CONTRIBUTORS-LIST:START  -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/4060976?v=4" width="100px;"/><br /><sub><b>Janry</b></sub>](https://github.com/janryWang)<br />[📖](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Documentation") [💻](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Code") [👀](#review-janryWang "Reviewed Pull Requests") [🤔](#ideas-janryWang "Ideas, Planning, & Feedback") |
+| [<img src="https://avatars0.githubusercontent.com/u/4060976?v=4" width="100px;" alt="Janry"/><br /><sub><b>Janry</b></sub>](https://github.com/janryWang)<br />[📖](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Documentation") [💻](https://github.com/janrywang/doc-scripts/commits?author=janryWang "Code") [👀](#review-janryWang "Reviewed Pull Requests") [🤔](#ideas-janryWang "Ideas, Planning, & Feedback") |
 | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

@@ -1,4 +1,5 @@
 module.exports = {
+  babelrc:false,
   plugins: [
     // https://github.com/babel/babel/issues/8562
     [require.resolve('@babel/plugin-proposal-decorators'), { legacy: true }],

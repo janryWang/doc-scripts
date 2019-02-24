@@ -10,29 +10,6 @@ const pkg = require(path.resolve(cwd, './package.json'))
 
 const entryPath = path.resolve(__dirname, './doc-scripts-entry.js')
 
-const getDocs = dir => {
-  let list = []
-  try {
-    list = fs.readdirSync(dir)
-    list = list.reduce((buf, _path) => {
-      _path = path.resolve(dir, _path)
-      let stat = fs.statSync(_path)
-      if (_path.indexOf('node_modules') > -1) {
-        return buf
-      } else if (stat.isDirectory()) {
-        return buf.concat(getDocs(_path))
-      } else if (/\.md$/.test(_path)) {
-        return buf.concat(_path)
-      } else {
-        return buf
-      }
-    }, [])
-  } catch (e) {
-    log.error(e)
-  }
-  return list
-}
-
 const getPkgPath = () => {
   try {
     const defaultPath = path.resolve(cwd, './src/index.js')
@@ -48,7 +25,7 @@ module.exports = options => ({
   devtool: 'cheap-module-source-map',
   entry: [entryPath],
   output: {
-    path: path.resolve(cwd, './doc-site'),
+    path: options.output ? options.output : path.resolve(cwd, './doc-site'),
     filename: 'bundle.[name].js'
   },
   stats: 'errors-only',
@@ -102,10 +79,7 @@ module.exports = options => ({
       {
         test: entryPath,
         loader: require.resolve('val-loader'),
-        options: {
-          ...options,
-          docs: getDocs(cwd)
-        }
+        options: options
       },
       {
         test: /\.css$/,
