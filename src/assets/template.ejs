@@ -13,12 +13,14 @@
     <% if (htmlWebpackPlugin.options.hot) { %>
     <script src="http://localhost:<%= htmlWebpackPlugin.options.port %>/webpack-dev-server.js"></script>
     <% } %>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/github-markdown-css/github-markdown.css"/>
     <%= htmlWebpackPlugin.options.header %>
   </head>
 
   <body>
     <div id="root"></div>
+    <script>
+      var mountNode = document.getElementById('root')
+    </script>
     <script
       src="https://unpkg.com/react@16/umd/react.<%= htmlWebpackPlugin.options.development ? "development" : "production.min" %>.js"
     ></script>
