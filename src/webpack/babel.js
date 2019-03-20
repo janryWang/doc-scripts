@@ -17,8 +17,7 @@ module.exports = {
           chrome: '65'
         },
         modules: false,
-        loose: true,
-        useBuiltIns: 'usage'
+        loose: true
       }
     ].filter(Boolean),
     require.resolve('@babel/preset-react')
