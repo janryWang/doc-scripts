@@ -290,10 +290,6 @@
   border-spacing: 0;
 }
 
-.site-body .react-demo-td,
-.site-body th {
-  padding: 0;
-}
 
 .site-body .react-demo-details .react-demo-summary {
   cursor: pointer;
