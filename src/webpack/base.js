@@ -26,7 +26,7 @@ module.exports = options => ({
   entry: [entryPath],
   output: {
     path: options.output ? options.output : path.resolve(cwd, './doc-site'),
-    filename: 'statics/bundle.[name].js'
+    filename: 'statics/bundle.[name].[hash].js'
   },
   stats: 'errors-only',
   resolve: {
