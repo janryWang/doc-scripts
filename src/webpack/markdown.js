@@ -22,7 +22,7 @@ const cleanTree = (tree, traverse,hasLink) => {
   if (!tree) return []
 
   const mapper = node => {
-    const text = getByType(node, 'text')
+    const text = getByType(node, 'text') || getByType(node, 'html')
     const link = getByType(node, 'link')
     const list = getByType(node, 'list')
     const child = {}
