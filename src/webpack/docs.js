@@ -57,7 +57,7 @@ export default (docs, isSummary, deps = {}) => {
         } else if (node.type === 'html') {
           const remoteUrl = node.link
           node.component = () => {
-            return React.createElement('iframe', { src: !node.isRemoteUrl ? `./iframe.html?path=${node.path}` : remoteUrl })
+            return React.createElement('iframe', { className:'doc-scripts-iframe', src: !node.isRemoteUrl ? `./iframe.html?path=${node.path}` : remoteUrl })
           }
           delete node.link
         } else {
