@@ -1,4 +1,4 @@
 - [首页](./home.js)
 - 快速上手
-   - [文档1](./README.md)
-   - 文档2
+   - [文档1 | html](./README.md)
+   - [文档2 | html](https://baidu.com)

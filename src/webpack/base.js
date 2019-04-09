@@ -9,6 +9,7 @@ const cwd = process.cwd()
 const pkg = require(path.resolve(cwd, './package.json'))
 
 const entryPath = path.resolve(__dirname, './doc-scripts-entry.js')
+const iframePath = path.resolve(__dirname, './doc-scripts-iframe.js')
 
 const getPkgPath = () => {
   try {
@@ -23,7 +24,10 @@ const getPkgPath = () => {
 module.exports = options => ({
   mode: 'development',
   devtool: 'cheap-module-source-map',
-  entry: [entryPath],
+  entry: {
+    index:[entryPath],
+    iframe:[iframePath]
+  },
   output: {
     path: options.output ? options.output : path.resolve(cwd, './doc-site'),
     filename: 'statics/bundle.[name].[hash].js'
@@ -77,7 +81,7 @@ module.exports = options => ({
         ]
       },
       {
-        test: entryPath,
+        test: new RegExp(`${entryPath}|${iframePath}`),
         loader: require.resolve('val-loader'),
         options: options
       },

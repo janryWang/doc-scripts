@@ -1,4 +1,5 @@
 import React from 'react'
+import resolvePathName from 'resolve-pathname'
 const traverseSummary = (summary, traverse) => {
   if (Array.isArray(summary)) {
     return summary.map(node => {
@@ -18,7 +19,31 @@ const traverseSummary = (summary, traverse) => {
 }
 const isMarkdown = text => /\.md/.test(text)
 
+const pageURL = new URL(window.location)
+
+const lowercase = str => str.toLocaleLowerCase()
+
 export default (docs, isSummary, deps = {}) => {
+  const componentPath = pageURL.searchParams.get('path')
+  if (componentPath) {
+    const lowerComponentPath = lowercase(resolvePathName(componentPath,window.__dirname))
+    const finded = Object.keys(deps || {}).find(
+      key =>
+        lowercase(key).indexOf(lowerComponentPath) > -1 ||
+        lowerComponentPath.indexOf(lowercase(key)) > -1
+    )
+    return [
+      {
+        path: componentPath,
+        component: finded
+          ? deps[finded]
+          : React.createElement('div', {}, 'No component found'),
+        meta: {
+          index:0
+        }
+      }
+    ]
+  }
   if (isSummary) {
     return traverseSummary(docs, node => {
       node.meta = node.meta || {}
@@ -30,8 +55,9 @@ export default (docs, isSummary, deps = {}) => {
           }
           delete node.link
         } else if (node.type === 'html') {
+          const remoteUrl = node.link
           node.component = () => {
-            return React.createElement('iframe', { src: node.link })
+            return React.createElement('iframe', { src: !node.isRemoteUrl ? `./iframe.html?path=${node.path}` : remoteUrl })
           }
           delete node.link
         } else {

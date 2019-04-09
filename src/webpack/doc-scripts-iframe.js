@@ -52,7 +52,7 @@ const createDeps = docs => {
           )
           paths[path] = true
         } else {
-          if (path.link && !paths[path.link] && path.type !== 'html') {
+          if (path.link && !paths[path.link] && path.type === 'html' && !path.isRemoteUrl) {
             deps.push(
               `"${path.link}":React.lazy(function(){return import('${
                 path.link
@@ -66,7 +66,7 @@ const createDeps = docs => {
         }
       })
     } else {
-      if (docs.link && !paths[docs.link] && docs.type !== 'html') {
+      if (docs.link && !paths[docs.link] && docs.type === 'html' && !path.isRemoteUrl) {
         deps.push(
           `"${docs.link}":React.lazy(function(){return import('${
             docs.link
@@ -110,13 +110,7 @@ module.exports = async function(options) {
   const code = `
   import React from 'react'
   import ReactDOM from 'react-dom'
-  import ReactDocRenderer from '${
-    hasRenderer
-      ? rendererPath
-      : hasSummary
-      ? 'react-site-renderer'
-      : 'react-doc-renderer'
-  }'
+  import ReactDocRenderer from 'react-doc-renderer'
   import createDocs from '${path.resolve(__dirname, './docs')}'
   import '${path.resolve(__dirname, './markdown.css')}'
   ${toArr(options.requires)
@@ -125,6 +119,7 @@ module.exports = async function(options) {
     })
     .join('\n')}
   const dependencies = {${createDeps(docs)}}
+  window.__dirname = '${hasSummary ? path.dirname(summaryPath) : ''}/';
   ReactDOM.render(
     React.createElement(React.Suspense,{
       fallback:React.createElement('div')
@@ -133,9 +128,7 @@ module.exports = async function(options) {
        ReactDocRenderer,
        {
         logo:React.createElement('span',{},'${pkg.name || 'This is Logo'}'),
-        docs:createDocs(${JSON.stringify(docs)},${JSON.stringify(
-    hasSummary
-  )},dependencies)
+        docs:createDocs(${JSON.stringify(docs)},true,dependencies)
        })),
      document.getElementById('root')
   );

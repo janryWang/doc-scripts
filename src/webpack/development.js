@@ -37,13 +37,30 @@ module.exports = options => {
       inject: 'body',
       port: port,
       hot: true,
+      chunks:['index'],
+      development: true,
+      header,
+      footer
+    }),
+    new HtmlWebpackPlugin({
+      title: title ? title : `${pkg.name}@${pkg.version}`,
+      filename: 'iframe.html',
+      template: path.resolve(__dirname, '../assets/template.ejs'),
+      inject: 'body',
+      port: port,
+      hot: true,
+      chunks:['iframe'],
       development: true,
       header,
       footer
     })
   )
 
-  config.entry.push(
+  config.entry.index.push(
+    require.resolve('webpack/hot/dev-server'),
+    `${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`
+  )
+  config.entry.iframe.push(
     require.resolve('webpack/hot/dev-server'),
     `${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`
   )

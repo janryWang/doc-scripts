@@ -34,6 +34,7 @@ const cleanTree = (tree, traverse,hasLink) => {
     }
     if (link) {
       child.link = getUrl(link)
+      child.isRemoteUrl = /(https?:)?\/\//.test(child.link)
       if(hasLink){
         hasLink(child.link)
       }
