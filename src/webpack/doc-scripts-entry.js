@@ -52,7 +52,12 @@ const createDeps = docs => {
           )
           paths[path] = true
         } else {
-          if (path.link && !paths[path.link] && path.type !== 'html') {
+          if (
+            path.link &&
+            !paths[path.link] &&
+            path.depth <= 1 &&
+            (!path.children || (path.children && !path.children.length))
+          ) {
             deps.push(
               `"${path.link}":React.lazy(function(){return import('${
                 path.link
@@ -66,7 +71,12 @@ const createDeps = docs => {
         }
       })
     } else {
-      if (docs.link && !paths[docs.link] && docs.type !== 'html') {
+      if (
+        docs.link &&
+        !paths[docs.link] &&
+        path.depth <= 1 &&
+        (!path.children || (path.children && !path.children.length))
+      ) {
         deps.push(
           `"${docs.link}":React.lazy(function(){return import('${
             docs.link

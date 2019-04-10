@@ -52,7 +52,7 @@ const createDeps = docs => {
           )
           paths[path] = true
         } else {
-          if (path.link && !paths[path.link] && path.type === 'html' && !path.isRemoteUrl) {
+          if (path.link && !paths[path.link] && !path.isRemoteUrl) {
             deps.push(
               `"${path.link}":React.lazy(function(){return import('${
                 path.link
@@ -66,7 +66,7 @@ const createDeps = docs => {
         }
       })
     } else {
-      if (docs.link && !paths[docs.link] && docs.type === 'html' && !path.isRemoteUrl) {
+      if (docs.link && !paths[docs.link] && !path.isRemoteUrl) {
         deps.push(
           `"${docs.link}":React.lazy(function(){return import('${
             docs.link

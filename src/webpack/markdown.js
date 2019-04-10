@@ -10,15 +10,15 @@ const getValue = getter('value')
 const getUrl = getter('url')
 const getByType = (node, type) => find(node, n => n.type === type)
 
-const parseText = (text)=>{
+const parseText = text => {
   const matched = String(text).match(/\s*([^|]+)\s*\|?\s*([^|]+)?\s*/)
   return {
-    title:matched && matched[1],
-    type:matched && matched[2] || 'empty'
+    title: matched && matched[1],
+    type: (matched && matched[2]) || 'empty'
   }
 }
 
-const cleanTree = (tree, traverse,hasLink) => {
+const cleanTree = (tree, traverse, hasLink, depth = 0) => {
   if (!tree) return []
 
   const mapper = node => {
@@ -26,6 +26,7 @@ const cleanTree = (tree, traverse,hasLink) => {
     const link = getByType(node, 'link')
     const list = getByType(node, 'list')
     const child = {}
+    child.depth = depth
     if (text) {
       child.text = getValue(text)
       const { title, type } = parseText(child.text)
@@ -35,16 +36,21 @@ const cleanTree = (tree, traverse,hasLink) => {
     if (link) {
       child.link = getUrl(link)
       child.isRemoteUrl = /(https?:)?\/\//.test(child.link)
-      if(hasLink){
+      if (hasLink) {
         hasLink(child.link)
       }
     }
     if (list && list.children && list.children.length) {
-      child.children = cleanTree(list.children, traverse,(link)=>{
-        if(link && child.link === link){
-          delete child.link
-        }
-      })
+      child.children = cleanTree(
+        list.children,
+        traverse,
+        link => {
+          if (link && child.link === link) {
+            delete child.link
+          }
+        },
+        depth + 1
+      )
     }
     if (typeof traverse === 'function') {
       traverse(child)
@@ -58,7 +64,7 @@ const cleanTree = (tree, traverse,hasLink) => {
     const list = find(tree, node => node.type === 'list')
     if (!list) return []
     if (!list.children) return []
-    return cleanTree(list.children, traverse)
+    return cleanTree(list.children, traverse, false, depth + 1)
   }
 }
 

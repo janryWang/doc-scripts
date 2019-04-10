@@ -26,7 +26,9 @@ const lowercase = str => str.toLocaleLowerCase()
 export default (docs, isSummary, deps = {}) => {
   const componentPath = pageURL.searchParams.get('path')
   if (componentPath) {
-    const lowerComponentPath = lowercase(resolvePathName(componentPath,window.__dirname))
+    const lowerComponentPath = lowercase(
+      resolvePathName(componentPath, window.__dirname)
+    )
     const finded = Object.keys(deps || {}).find(
       key =>
         lowercase(key).indexOf(lowerComponentPath) > -1 ||
@@ -39,7 +41,7 @@ export default (docs, isSummary, deps = {}) => {
           ? deps[finded]
           : React.createElement('div', {}, 'No component found'),
         meta: {
-          index:0
+          index: 0
         }
       }
     ]
@@ -48,16 +50,25 @@ export default (docs, isSummary, deps = {}) => {
     return traverseSummary(docs, node => {
       node.meta = node.meta || {}
       if (node.link) {
-        if (deps[node.link]) {
+        if (deps[node.link] && node.depth <= 1) {
           node.component = deps[node.link]
           if (deps[node.link].meta) {
             node.meta = deps[node.link].meta
           }
           delete node.link
-        } else if (node.type === 'html') {
+        } else if (
+          node.type === 'html' ||
+          node.depth > 1 ||
+          (node.depth <= 1 && node.children && node.children.length > 0)
+        ) {
           const remoteUrl = node.link
           node.component = () => {
-            return React.createElement('iframe', { className:'doc-scripts-iframe', src: !node.isRemoteUrl ? `./iframe.html?path=${node.path}` : remoteUrl })
+            return React.createElement('iframe', {
+              className: 'doc-scripts-iframe',
+              src: !node.isRemoteUrl
+                ? `./iframe.html?path=${node.path}`
+                : remoteUrl
+            })
           }
           delete node.link
         } else {
