@@ -62,8 +62,9 @@ export default (docs, isSummary, deps = {}) => {
           (node.depth <= 1 && node.children && node.children.length > 0)
         ) {
           const remoteUrl = node.link
-          node.component = () => {
+          node.component = (props) => {
             return React.createElement('iframe', {
+              ...props,
               className: 'doc-scripts-iframe',
               src: !node.isRemoteUrl
                 ? `./iframe.html?path=${node.path}`

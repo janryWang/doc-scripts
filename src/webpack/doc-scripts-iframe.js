@@ -122,7 +122,15 @@ module.exports = async function(options) {
   window.__dirname = '${hasSummary ? path.dirname(summaryPath) : ''}/';
   ReactDOM.render(
     React.createElement(React.Suspense,{
-      fallback:React.createElement('div')
+      fallback:React.createElement("svg", {
+        width: "40",
+        height: "40",
+        viewBox: "0 0 40 40",
+        className: "loading-svg"
+      }, React.createElement("polygon", {
+        points: "0 0 0 40 40 40 40 0",
+        className: "loading-rect"
+      }))
     },
      React.createElement(
        ReactDocRenderer,
