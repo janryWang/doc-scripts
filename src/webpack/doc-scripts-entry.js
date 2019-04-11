@@ -46,7 +46,7 @@ const createDeps = docs => {
     let deps = []
     if (Array.isArray(docs)) {
       docs.forEach(path => {
-        if (typeof path === 'string' && !paths[path]) {
+        if (typeof path === 'string' && !paths[path] && !path.isRemoteUrl) {
           deps.push(
             `"${path}":React.lazy(function(){return import('${path}');})`
           )
@@ -56,6 +56,7 @@ const createDeps = docs => {
             path.link &&
             !paths[path.link] &&
             path.depth <= 1 &&
+            !path.isRemoteUrl &&
             (!path.children || (path.children && !path.children.length))
           ) {
             deps.push(
@@ -74,8 +75,9 @@ const createDeps = docs => {
       if (
         docs.link &&
         !paths[docs.link] &&
-        path.depth <= 1 &&
-        (!path.children || (path.children && !path.children.length))
+        docs.depth <= 1 &&
+        !docs.isRemoteUrl &&
+        (!docs.children || (docs.children && !docs.children.length))
       ) {
         deps.push(
           `"${docs.link}":React.lazy(function(){return import('${
