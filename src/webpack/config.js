@@ -30,7 +30,7 @@ module.exports = async function(mode, options = {}, webpackConfig) {
       }
     } catch (e) {}
     if (typeof userConfigContents === 'function') {
-      return userConfigContents(config(options))
+      return userConfigContents(config(options),mode)
     } else if (userConfigContents) {
       return merge.smart(config(options), userConfigContents)
     }
