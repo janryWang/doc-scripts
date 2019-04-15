@@ -6,9 +6,9 @@ const cwd = process.cwd()
 
 module.exports = async function(mode, options = {}, webpackConfig) {
   const config = require(`./${mode}`)
-  const userConfigPath = path.resolve(cwd, './doc-scripts.config.js')
-  const headerPath = path.resolve(cwd, './doc-scripts.header.html')
-  const footerPath = path.resolve(cwd, './doc-scripts.footer.html')
+  const userConfigPath = path.resolve(options.input, './doc-scripts.config.js')
+  const headerPath = path.resolve(options.input, './doc-scripts.header.html')
+  const footerPath = path.resolve(options.input, './doc-scripts.footer.html')
   try {
     let userConfigContents = webpackConfig
     try {

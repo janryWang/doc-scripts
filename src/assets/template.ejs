@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= title %></title>
     <base target="_parent">
     <script>
       var process = {
@@ -18,10 +18,7 @@
         }
       }
     </script>
-    <% if (htmlWebpackPlugin.options.hot) { %>
-    <script src="http://localhost:<%= htmlWebpackPlugin.options.port %>/webpack-dev-server.js"></script>
-    <% } %>
-    <%= htmlWebpackPlugin.options.header %>
+    <%= header %>
     <style>
       .loading-svg {
         position: absolute;
@@ -62,14 +59,14 @@
       },1000)
     </script>
     <script
-      src="https://unpkg.com/react@16/umd/react.<%= htmlWebpackPlugin.options.development ? "development" : "production.min" %>.js"
+      src="https://unpkg.com/react@16/umd/react.<%= development ? "development" : "production.min" %>.js"
     ></script>
     <script
-      src="https://unpkg.com/react-dom@16/umd/react-dom.<%= htmlWebpackPlugin.options.development ? "development" : "production.min" %>.js"
+      src="https://unpkg.com/react-dom@16/umd/react-dom.<%= development ? "development" : "production.min" %>.js"
     ></script>
     <script
-      src="https://unpkg.com/react-is@16/umd/react-is.<%= htmlWebpackPlugin.options.development ? "development" : "production.min" %>.js"
+      src="https://unpkg.com/react-is@16/umd/react-is.<%= development ? "development" : "production.min" %>.js"
     ></script>
-    <%= htmlWebpackPlugin.options.footer %>
+    <%= footer %>
   </body>
 </html>

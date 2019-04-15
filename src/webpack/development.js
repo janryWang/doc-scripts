@@ -31,28 +31,28 @@ module.exports = options => {
   )
   config.plugins.push(
     new HtmlWebpackPlugin({
-      title: title ? title : `${pkg.name}@${pkg.version}`,
       filename: 'index.html',
       template: path.resolve(__dirname, '../assets/template.ejs'),
       inject: 'body',
-      port: port,
-      hot: true,
       chunks:['index'],
-      development: true,
-      header,
-      footer
+      templateParameters:{
+        title: title ? title : `${pkg.name}@${pkg.version}`,
+        development: true,
+        header,
+        footer
+      }
     }),
     new HtmlWebpackPlugin({
-      title: title ? title : `${pkg.name}@${pkg.version}`,
       filename: 'iframe.html',
       template: path.resolve(__dirname, '../assets/template.ejs'),
       inject: 'body',
-      port: port,
-      hot: true,
       chunks:['iframe'],
-      development: true,
-      header,
-      footer
+      templateParameters:{
+        title: title ? title : `${pkg.name}@${pkg.version}`,
+        development: true,
+        header,
+        footer
+      }
     })
   )
 
