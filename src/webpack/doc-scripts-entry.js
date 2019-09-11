@@ -4,6 +4,7 @@ const { parseToc } = require('./markdown')
 const cwd = process.cwd()
 const toArr = val => (Array.isArray(val) ? val : val ? [val] : [])
 let pkg = {}
+
 try {
   pkg = require(path.resolve(cwd, './package.json'))
 } catch (e) {}
@@ -40,7 +41,13 @@ const parseSummary = async filePath => {
   })
 }
 
-const createDeps = docs => {
+const importTemplate = (path, lazy = true) => {
+  const importPath = `import('${path}')`
+  return lazy ? `React.lazy(function(){return ${importPath}})`
+    : importPath
+}
+
+const createDeps = (docs, lazy) => {
   const paths = {}
   const _createDeps = docs => {
     let deps = []
@@ -48,7 +55,7 @@ const createDeps = docs => {
       docs.forEach(path => {
         if (typeof path === 'string' && !paths[path] && !path.isRemoteUrl) {
           deps.push(
-            `"${path}":React.lazy(function(){return import('${path}');})`
+            `"${path}":${importTemplate(path)}`
           )
           paths[path] = true
         } else {
@@ -60,9 +67,7 @@ const createDeps = docs => {
             (!path.children || (path.children && !path.children.length))
           ) {
             deps.push(
-              `"${path.link}":React.lazy(function(){return import('${
-                path.link
-              }');})`
+              `"${path.link}":${importTemplate(path.link)}`
             )
             paths[path.link] = true
           }
@@ -80,9 +85,7 @@ const createDeps = docs => {
         (!docs.children || (docs.children && !docs.children.length))
       ) {
         deps.push(
-          `"${docs.link}":React.lazy(function(){return import('${
-            docs.link
-          }');})`
+          `"${docs.link}":${importTemplate(docs.link)}`
         )
         paths[docs.link] = true
       }
@@ -96,6 +99,7 @@ const createDeps = docs => {
 }
 
 module.exports = async function(options) {
+  const lazy = options.lazy
   const inputPath = options.input ? options.input : cwd
   const rendererPath = options.renderer
     ? options.renderer
@@ -136,7 +140,7 @@ module.exports = async function(options) {
       return `import '${path}'`
     })
     .join('\n')}
-  const dependencies = {${createDeps(docs)}}
+  const dependencies = {${createDeps(docs, lazy)}}
   ReactDOM.render(
     React.createElement(React.Suspense,{
       fallback:React.createElement('div')

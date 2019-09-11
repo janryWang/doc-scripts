@@ -22,6 +22,7 @@ export const command = (options = {}, webpackConfig) => {
     program
         .option("-i, --input <dir>", "Entry Directory")
         .option("-o, --output <dir>", "Output Directory")
+        .option("-l, --lazy", "Not Lazy depenedenies", true)
         .arguments("<script>")
         .action(async (script, cmd) => {
             try {
@@ -29,6 +30,7 @@ export const command = (options = {}, webpackConfig) => {
                     options.input = path.resolve(process.cwd(), cmd.input)
                 if (cmd.output)
                     options.output = path.resolve(process.cwd(), cmd.output)
+                options.lazy = cmd.lazy
                 await execute(script, options, webpackConfig)
             } catch (e) {
                 console.log(e)
