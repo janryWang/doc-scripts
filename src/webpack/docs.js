@@ -83,7 +83,7 @@ export default (docs, isSummary, deps = {}) => {
       const meta = component.meta || {}
       return {
         path,
-        component,
+        component: component.default || component,
         meta
       }
     })
