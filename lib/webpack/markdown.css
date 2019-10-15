@@ -285,7 +285,7 @@
   display: table;
 }
 
-.site-body table {
+.site-body .react-demo-table {
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -515,7 +515,7 @@
 .site-body .react-demo-ol,
 .site-body .react-demo-p,
 .site-body .react-demo-pre,
-.site-body table,
+.site-body .react-demo-table,
 .site-body .react-demo-ul {
   margin-bottom: 16px;
   margin-top: 0;
@@ -642,27 +642,27 @@
   padding: 0 16px;
 }
 
-.site-body table {
+.site-body .react-demo-table {
   overflow: auto;
   width: 100%;
 }
 
-.site-body table th {
+.site-body .react-demo-table .react-demo-th {
   font-weight: 600;
 }
 
-.site-body table td,
-.site-body table th {
+.site-body .react-demo-table .react-demo-td,
+.site-body .react-demo-table .react-demo-th {
   border: 1px solid #dfe2e5;
   padding: 6px 13px;
 }
 
-.site-body table tr {
+.site-body .react-demo-table .react-demo-tr {
   background-color: #fff;
   border-top: 1px solid #c6cbd1;
 }
 
-.site-body table tr:nth-child(2n) {
+.site-body .react-demo-table .react-demo-tr:nth-child(2n) {
   background-color: #f6f8fa;
 }
 
