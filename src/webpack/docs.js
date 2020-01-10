@@ -79,11 +79,11 @@ export default (docs, isSummary, deps = {}) => {
     })
   } else {
     return docs.map(path => {
-      const component = deps[path]
+      const component = deps[path]['default'] || deps[path]
       const meta = component.meta || {}
       return {
         path,
-        component: component.default || component,
+        component: component,
         meta
       }
     })
