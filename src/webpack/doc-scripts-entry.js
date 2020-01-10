@@ -43,7 +43,8 @@ const parseSummary = async filePath => {
 
 const importTemplate = (path, lazy = true) => {
   const importPath = `import('${path}')`
-  return lazy ? `React.lazy(function(){return ${importPath}})`
+  return lazy
+    ? `React.lazy(function(){return ${importPath}})`
     : `await ${importPath}`
 }
 
@@ -54,9 +55,7 @@ const createDeps = (docs, lazy) => {
     if (Array.isArray(docs)) {
       docs.forEach(path => {
         if (typeof path === 'string' && !paths[path] && !path.isRemoteUrl) {
-          deps.push(
-            `"${path}":${importTemplate(path, lazy)}`
-          )
+          deps.push(`"${path}":${importTemplate(path, lazy)}`)
           paths[path] = true
         } else {
           if (
@@ -66,9 +65,7 @@ const createDeps = (docs, lazy) => {
             !path.isRemoteUrl &&
             (!path.children || (path.children && !path.children.length))
           ) {
-            deps.push(
-              `"${path.link}":${importTemplate(path.link, lazy)}`
-            )
+            deps.push(`"${path.link}":${importTemplate(path.link, lazy)}`)
             paths[path.link] = true
           }
           if (path && path.children) {
@@ -84,9 +81,7 @@ const createDeps = (docs, lazy) => {
         !docs.isRemoteUrl &&
         (!docs.children || (docs.children && !docs.children.length))
       ) {
-        deps.push(
-          `"${docs.link}":${importTemplate(docs.link)}`
-        )
+        deps.push(`"${docs.link}":${importTemplate(docs.link, lazy)}`)
         paths[docs.link] = true
       }
       if (Array.isArray(docs.children)) {
@@ -130,12 +125,14 @@ module.exports = async function(options) {
     hasRenderer
       ? rendererPath
       : hasSummary
-        ? 'react-site-renderer'
-        : 'react-doc-renderer'
+      ? 'react-site-renderer'
+      : 'react-doc-renderer'
   }'
   import createDocs from '${path.resolve(__dirname, './docs')}'
   import '${path.resolve(__dirname, './markdown.css')}'
-  ${toArr(options.requires).map(path => `import '${path}'`).join('\n')}
+  ${toArr(options.requires)
+    .map(path => `import '${path}'`)
+    .join('\n')}
   (async () => {
     const dependencies = {${createDeps(docs, lazy)}}
     ReactDOM.render(
@@ -143,8 +140,11 @@ module.exports = async function(options) {
         fallback:React.createElement('div')
       },
         React.createElement(ReactDocRenderer, {
-          logo: React.createElement('span', {}, '${pkg.name || 'This is Logo'}'),
-          docs: createDocs(${JSON.stringify(docs)}, ${JSON.stringify(hasSummary)}, dependencies)
+          logo: React.createElement('span', {}, '${pkg.name ||
+            'This is Logo'}'),
+          docs: createDocs(${JSON.stringify(docs)}, ${JSON.stringify(
+    hasSummary
+  )}, dependencies)
         })
       ),
      document.getElementById('root')
