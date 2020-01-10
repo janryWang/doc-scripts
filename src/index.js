@@ -22,7 +22,7 @@ export const command = (options = {}, webpackConfig) => {
     program
         .option("-i, --input <dir>", "Entry Directory")
         .option("-o, --output <dir>", "Output Directory")
-        .option("-l, --lazy", "Not Lazy depenedenies", true)
+        .option("-l, --lazy <boolean>", "Not Lazy depenedenies", true)
         .arguments("<script>")
         .action(async (script, cmd) => {
             try {
@@ -30,7 +30,7 @@ export const command = (options = {}, webpackConfig) => {
                     options.input = path.resolve(process.cwd(), cmd.input)
                 if (cmd.output)
                     options.output = path.resolve(process.cwd(), cmd.output)
-                options.lazy = cmd.lazy
+                if (cmd.lazy) options.lazy = cmd.lazy === "false" ? false : true
                 await execute(script, options, webpackConfig)
             } catch (e) {
                 console.log(e)
