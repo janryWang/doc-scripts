@@ -67,7 +67,9 @@ module.exports = options => {
   )
   config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new GenerateSW()
+    new GenerateSW({
+      maximumFileSizeToCacheInBytes:20 * 1024 * 1024
+    })
   )
 
   return config

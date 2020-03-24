@@ -35,7 +35,9 @@ module.exports = (options) => {
         footer
       }
     }),
-    new GenerateSW()
+    new GenerateSW({
+      maximumFileSizeToCacheInBytes:20 * 1024 * 1024
+    })
   )
   return {
     ...config,
