@@ -5,6 +5,7 @@ const pkg = require(path.resolve(process.cwd(), './package.json'))
 const notifier = require('node-notifier')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { GenerateSW } = require('workbox-webpack-plugin')
 const log = require('../log')
 
 const warnImage = path.resolve(__dirname, '../assets/warn.png')
@@ -34,8 +35,8 @@ module.exports = options => {
       filename: 'index.html',
       template: path.resolve(__dirname, '../assets/template.ejs'),
       inject: 'body',
-      chunks:['index'],
-      templateParameters:{
+      chunks: ['index'],
+      templateParameters: {
         title: title ? title : `${pkg.name}@${pkg.version}`,
         development: true,
         header,
@@ -46,8 +47,8 @@ module.exports = options => {
       filename: 'iframe.html',
       template: path.resolve(__dirname, '../assets/template.ejs'),
       inject: 'body',
-      chunks:['iframe'],
-      templateParameters:{
+      chunks: ['iframe'],
+      templateParameters: {
         title: title ? title : `${pkg.name}@${pkg.version}`,
         development: true,
         header,
@@ -64,7 +65,10 @@ module.exports = options => {
     require.resolve('webpack/hot/dev-server'),
     `${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`
   )
-  config.plugins.push(new webpack.HotModuleReplacementPlugin())
+  config.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new GenerateSW()
+  )
 
   return config
 }
