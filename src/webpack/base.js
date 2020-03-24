@@ -42,11 +42,6 @@ module.exports = options => ({
       [pkg.name]: getPkgPath()
     }
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    'react-is': 'ReactIs'
-  },
   plugins: [
     new ProgressBarPlugin({
       clear: true

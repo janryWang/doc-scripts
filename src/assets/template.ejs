@@ -17,6 +17,9 @@
           // The above line can throw if we do not have access to the parent frame -- i.e. cross origin
         }
       }
+      if ('serviceWorker' in navigator) {
+         navigator.serviceWorker.register('/service-worker.js')
+      }
     </script>
     <%= header %>
     <style>
@@ -58,15 +61,6 @@
         if(svg) svg.style.display = 'block'
       },1000)
     </script>
-    <script
-      src="https://unpkg.com/react@16/umd/react.<%= development ? "development" : "production.min" %>.js"
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@16/umd/react-dom.<%= development ? "development" : "production.min" %>.js"
-    ></script>
-    <script
-      src="https://unpkg.com/react-is@16/umd/react-is.<%= development ? "development" : "production.min" %>.js"
-    ></script>
     <%= footer %>
   </body>
 </html>

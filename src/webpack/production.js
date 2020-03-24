@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const path = require('path')
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { GenerateSW } = require('workbox-webpack-plugin')
+
 
 module.exports = (options) => {
   const { header, footer, title } = options || {}
@@ -15,7 +17,7 @@ module.exports = (options) => {
       chunks:['index'],
       templateParameters:{
         title: title ? title : `${pkg.name}@${pkg.version}`,
-        development: true,
+        development: false,
         header,
         footer
       }
@@ -28,11 +30,12 @@ module.exports = (options) => {
       chunks:['iframe'],
       templateParameters:{
         title: title ? title : `${pkg.name}@${pkg.version}`,
-        development: true,
+        development: false,
         header,
         footer
       }
-    })
+    }),
+    new GenerateSW()
   )
   return {
     ...config,
