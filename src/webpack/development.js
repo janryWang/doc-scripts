@@ -66,10 +66,7 @@ module.exports = options => {
     `${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`
   )
   config.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new GenerateSW({
-      maximumFileSizeToCacheInBytes:20 * 1024 * 1024
-    })
+    new webpack.HotModuleReplacementPlugin()
   )
 
   return config
