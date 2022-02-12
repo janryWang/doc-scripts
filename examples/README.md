@@ -35,10 +35,8 @@ export default ()=>{
 
 ```javascript
 
-export default ()=>{
-  return <div>
-    This is JSX code, and it is runnable
-  </div>
+export default () => {
+  return 'This is Javascript code'
 }
 
 ```
